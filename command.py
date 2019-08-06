@@ -14,7 +14,16 @@ async def greeting(message):
 async def greetingExtended(message):
     await message.channel.send("Hellow, {}".format(message.author.mention))
 
+async def showCommand(message):
+    await message.channel.send({
+        embed: {
+            title: "Commands",
+            description: "All the commands:"
+        }
+    })
+
 COMMANDS = [
+    command("help", showCommand),
     command("hello", greeting),
     command("hello!", greetingExtended)
 ]
