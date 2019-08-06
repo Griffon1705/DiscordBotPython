@@ -1,5 +1,9 @@
 import discord
 
+from command import COMMANDS
+
+PREFIX = "."
+
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged in as')
@@ -22,6 +26,15 @@ class MyClient(discord.Client):
 
         if message.content.startswith('.how are you?'):
             await message.channel.send('I am good. {0.author.mention}'.format(message))
+
+        if message.content.startswith(PREFIX):
+
+            m = message.content
+            command = m.split(" ")[0][2:]
+
+            for c in COMMANDS:
+                if command == c.trigger:
+                    await c.function(message)
 
 
     async def on_member_join(self, member):
