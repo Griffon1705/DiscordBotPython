@@ -21,7 +21,7 @@ async def showCommand(message):
     embed = discord.Embed(title="Commands", description="List of all the commands: ")
 
     for c in COMMANDS:
-        embed.add_field(name=c.trigger , value=c.desc, inline=False)
+        embed.add_field(name=PREFIX+c.trigger , value=c.desc, inline=False)
 
     await message.channel.send(embed=embed)
 
@@ -31,3 +31,5 @@ COMMANDS = [
     command("hello", greeting, "Greets the player."),
     command("hello!", greetingExtended, "Greets the player with a mention.")
 ]
+
+PREFIX = "."

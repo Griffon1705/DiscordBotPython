@@ -1,14 +1,14 @@
 import discord
 import json
 
-from command import COMMANDS
+from command import COMMANDS, PREFIX
 
 with open("config.json", 'r') as f:
         datastore = json.load(f)
         token = datastore["discord_token"]
         print(token)
 
-PREFIX = "."
+
 
 class MyClient(discord.Client):
     async def on_ready(self):
