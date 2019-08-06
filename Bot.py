@@ -1,4 +1,5 @@
-import discord, json
+import discord
+import json
 
 from command import COMMANDS
 
@@ -26,13 +27,16 @@ class MyClient(discord.Client):
             await message.channel.send('I am good. {0.author.mention}'.format(message))
 
         if message.content.startswith(PREFIX):
-
+            print("Command detected")
             m = message.content
-            command = m.split(" ")[0][2:]
+            command = m.split(" ")[0][1:]
 
             for c in COMMANDS:
+                print("Checking: "+ c.trigger + " for " + command)
                 if command == c.trigger:
+                    print("Command found: "+ c.trigger)
                     await c.function(message)
+                    break
 
 
     async def on_member_join(self, member):

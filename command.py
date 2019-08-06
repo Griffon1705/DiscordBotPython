@@ -1,3 +1,4 @@
+import discord
 
 class command:
 
@@ -15,12 +16,11 @@ async def greetingExtended(message):
     await message.channel.send("Hellow, {}".format(message.author.mention))
 
 async def showCommand(message):
-    await message.channel.send({
-        embed: {
-            title: "Commands",
-            description: "All the commands:"
-        }
-    })
+
+    embed = discord.Embed(title="Commands", description="List of all the commands: ")
+
+    await message.channel.send(embed=embed)
+
 
 COMMANDS = [
     command("help", showCommand),
