@@ -1,6 +1,11 @@
-import discord
+import discord, json
 
 from command import COMMANDS
+
+with open("config.json", 'r') as f:
+        datastore = json.load(f)
+        token = datastore["discord_token"]
+        print(token)
 
 PREFIX = "."
 
@@ -52,4 +57,4 @@ class MyClient(discord.Client):
 
 
 client = MyClient()
-client.run('NjA3MjYyNjk2MjQwNDQ3NjEz.XUhDfQ.pm0cKHFNyCFVCFjsnIkJRIQy0ag')
+client.run(token)
