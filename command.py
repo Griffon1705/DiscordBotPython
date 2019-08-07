@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 from urllib.error import URLError, HTTPError
 
 API_URL = "http://127.0.0.1:5000"
+API_KEY = "?api_key=123"
 
 class command:
 
@@ -34,7 +35,7 @@ async def showCommand(message):
 async def getDanceGif(message):
 
     try:
-        req = urllib.request.urlopen(urlparse(API_URL+"/gif/random").geturl(), timeout=5)
+        req = urllib.request.urlopen(urlparse(API_URL+"/gif/random"+API_KEY).geturl(), timeout=5)
 
     except (HTTPError, URLError) as error:
         await message.channel.send("Oops..., something broke.")
